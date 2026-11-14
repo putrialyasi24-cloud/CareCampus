@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48" fill="none">
+  <!-- Soft rounded background badge -->
+  <rect width="48" height="48" rx="12" fill="#F1F5F9" />
+  
+  <!-- Sage green gentle accent background for the building -->
+  <path d="M12 21L24 13L36 21V36C36 37.1 35.1 38 34 38H14C12.9 38 12 37.1 12 36V21Z" fill="#A3B5A0" fill-opacity="0.25" stroke="#64748B" stroke-width="2" stroke-linejoin="round"/>
+  
+  <!-- Campus columns / structure -->
+  <line x1="18" y1="26" x2="18" y2="34" stroke="#64748B" stroke-width="2" stroke-linecap="round"/>
+  <line x1="24" y1="26" x2="24" y2="34" stroke="#64748B" stroke-width="2" stroke-linecap="round"/>
+  <line x1="30" y1="26" x2="30" y2="34" stroke="#64748B" stroke-width="2" stroke-linecap="round"/>
+  
+  <!-- Campus Pediment / Top triangle -->
+  <polygon points="24,11 10,21 38,21" fill="#64748B" />
+  
+  <!-- Small Caring Heart/Check Badge in Sage Green -->
+  <circle cx="36" cy="14" r="6" fill="#A3B5A0" stroke="#FFFFFF" stroke-width="2"/>
+  <path d="M33.5 14L35 15.5L38.5 12" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+

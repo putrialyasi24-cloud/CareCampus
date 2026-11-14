@@ -1,0 +1,15 @@
+# Operating System Files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Archives & Temporary Files
+*.zip
+*.tar.gz
+*.rar
+*.log
+
+# Uploaded complaint files (keep folder structure)
+uploads/complaints/*
+!uploads/complaints/.htaccess
+!uploads/complaints/index.html
