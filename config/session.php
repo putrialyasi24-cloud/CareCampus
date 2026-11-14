@@ -19,20 +19,19 @@ require_once __DIR__ . '/database.php';
  * Menghasilkan URL yang akurat di XAMPP localhost atau subdirectory
  */
 function base_url($path = '') {
-    $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || (isset($_SERVER['SERVER_PORT']) && $_SERVER['SERVER_PORT'] == 443)) ? "https://" : "http://";
+    $isHttps = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off')
+               || (isset($_SERVER['SERVER_PORT']) && $_SERVER['SERVER_PORT'] == 443)
+               || (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https');
+    $protocol = $isHttps ? "https://" : "http://";
     $host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'localhost';
     
     // Tentukan folder root proyek PutriPPL
     $scriptName = str_replace('\\', '/', $_SERVER['SCRIPT_NAME'] ?? '');
-    $baseFolder = '/PutriPPL';
-    if (strpos($scriptName, '/PutriPPL') !== false) {
+    $requestUri = $_SERVER['REQUEST_URI'] ?? '';
+
+    $baseFolder = '';
+    if (strpos($scriptName, '/PutriPPL') !== false || strpos($requestUri, '/PutriPPL') === 0) {
         $baseFolder = '/PutriPPL';
-    } else {
-        $docRoot = str_replace('\\', '/', realpath($_SERVER['DOCUMENT_ROOT'] ?? ''));
-        $appRoot = str_replace('\\', '/', realpath(dirname(__DIR__)));
-        $sub = str_replace($docRoot, '', $appRoot);
-        $baseFolder = '/' . trim($sub, '/');
-        if ($baseFolder === '/') $baseFolder = '';
     }
 
     $cleanPath = ltrim($path, '/');
