@@ -18,7 +18,7 @@ $formData = [
     'deskripsi' => ''
 ];
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if (($_SERVER['REQUEST_METHOD'] ?? '') === 'POST') {
     $formData['judul'] = trim($_POST['judul'] ?? '');
     $formData['kategori'] = trim($_POST['kategori'] ?? '');
     $formData['lokasi'] = trim($_POST['lokasi'] ?? '');

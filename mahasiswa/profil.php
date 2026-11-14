@@ -13,7 +13,7 @@ $pdo = get_db();
 $errors = [];
 $successMessage = '';
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if (($_SERVER['REQUEST_METHOD'] ?? '') === 'POST') {
     $action = $_POST['action'] ?? '';
     $token = $_POST['csrf_token'] ?? '';
 

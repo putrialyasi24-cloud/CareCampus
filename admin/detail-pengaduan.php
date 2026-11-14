@@ -32,7 +32,7 @@ if (!$complaint) {
 $errors = [];
 
 // Proses Update Status & Catatan Tindak Lanjut oleh Admin
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if (($_SERVER['REQUEST_METHOD'] ?? '') === 'POST') {
     $token = $_POST['csrf_token'] ?? '';
     $status_baru = trim($_POST['status'] ?? '');
     $catatan_admin = trim($_POST['catatan_admin'] ?? '');

@@ -5,6 +5,12 @@
  * Pemilik Proyek: Putri Alya
  */
 
+if (!ob_get_level()) {
+    ob_start();
+}
+
+error_reporting(E_ALL & ~E_DEPRECATED & ~E_USER_DEPRECATED & ~E_NOTICE);
+
 $uri = parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH);
 $uri = urldecode($uri);
 $path = ltrim($uri, '/');

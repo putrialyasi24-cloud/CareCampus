@@ -21,7 +21,7 @@ $formData = [
     'no_telp' => ''
 ];
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if (($_SERVER['REQUEST_METHOD'] ?? '') === 'POST') {
     $formData['nama'] = trim($_POST['nama'] ?? '');
     $formData['nim'] = trim($_POST['nim'] ?? '');
     $formData['prodi'] = trim($_POST['prodi'] ?? '');

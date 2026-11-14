@@ -13,7 +13,7 @@ $pdo = get_db();
 $errors = [];
 
 // Proses Tambah Pengguna Baru
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'create_user') {
+if (($_SERVER['REQUEST_METHOD'] ?? '') === 'POST' && isset($_POST['action']) && $_POST['action'] === 'create_user') {
     $token = $_POST['csrf_token'] ?? '';
     if (!verify_csrf_token($token)) {
         $errors[] = 'Token keamanan tidak valid.';
@@ -53,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
 }
 
 // Proses Reset Password Pengguna
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'reset_password') {
+if (($_SERVER['REQUEST_METHOD'] ?? '') === 'POST' && isset($_POST['action']) && $_POST['action'] === 'reset_password') {
     $token = $_POST['csrf_token'] ?? '';
     if (!verify_csrf_token($token)) {
         $errors[] = 'Token keamanan tidak valid.';

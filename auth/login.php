@@ -20,7 +20,7 @@ if (is_logged_in()) {
 $errors = [];
 $identifier = '';
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if (($_SERVER['REQUEST_METHOD'] ?? '') === 'POST') {
     $identifier = trim($_POST['identifier'] ?? '');
     $password = trim($_POST['password'] ?? '');
     $token = $_POST['csrf_token'] ?? '';

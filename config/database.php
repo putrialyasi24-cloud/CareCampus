@@ -5,6 +5,9 @@
  * Pemilik Proyek: Putri Alya
  */
 
+// Sembunyikan notifikasi deprecated agar tidak merusak pengiriman HTTP headers
+error_reporting(E_ALL & ~E_DEPRECATED & ~E_USER_DEPRECATED & ~E_NOTICE);
+
 // Konfigurasi Database (Mendukung Environment Variables untuk Vercel / Cloud MySQL)
 define('DB_HOST', getenv('DB_HOST') ?: 'localhost');
 define('DB_USER', getenv('DB_USER') ?: 'root');
@@ -76,10 +79,16 @@ function get_db() {
         PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
     ]);
 
-    // Daftarkan fungsi NOW() agar kompatibel dengan query MySQL
-    $pdo->sqliteCreateFunction('NOW', function() {
-        return date('Y-m-d H:i:s');
-    });
+    // Daftarkan fungsi NOW() agar kompatibel dengan query MySQL (kompatibel PHP 8.1 s/d 8.5+)
+    if (method_exists($pdo, 'createFunction')) {
+        @$pdo->createFunction('NOW', function() {
+            return date('Y-m-d H:i:s');
+        });
+    } elseif (method_exists($pdo, 'sqliteCreateFunction')) {
+        @$pdo->sqliteCreateFunction('NOW', function() {
+            return date('Y-m-d H:i:s');
+        });
+    }
 
     if ($needInit) {
         init_sqlite_schema($pdo);

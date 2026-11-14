@@ -12,7 +12,7 @@ $user = current_user();
 $pdo = get_db();
 $errors = [];
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if (($_SERVER['REQUEST_METHOD'] ?? '') === 'POST') {
     $action = $_POST['action'] ?? '';
     $token = $_POST['csrf_token'] ?? '';
 

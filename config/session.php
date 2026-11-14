@@ -5,6 +5,12 @@
  * Pemilik Proyek: Putri Alya
  */
 
+if (!ob_get_level()) {
+    ob_start();
+}
+
+error_reporting(E_ALL & ~E_DEPRECATED & ~E_USER_DEPRECATED & ~E_NOTICE);
+
 if (session_status() === PHP_SESSION_NONE) {
     // Parameter session yang aman
     ini_set('session.cookie_httponly', 1);
